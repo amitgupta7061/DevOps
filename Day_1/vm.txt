@@ -1,0 +1,98 @@
+🖥️ Virtual Machine (VM) – Notes
+🔹 What is a Virtual Machine?
+A Virtual Machine is a software emulation of a physical computer that runs an operating system and applications like a real computer. It uses the host machine’s hardware through a hypervisor (like VirtualBox, VMware, KVM).
+
+🔹 Key Concepts:
+Host OS: The real physical computer and operating system.
+
+Guest OS: The virtual operating system inside the VM.
+
+Hypervisor: Software that enables virtualization (e.g., VirtualBox, Hyper-V, KVM).
+
+Uses: Testing, deployment, running multiple OSs, isolation, cloud hosting.
+
+☁️ Setting Up a VM on DigitalOcean
+🔹 What is DigitalOcean?
+DigitalOcean is a cloud service provider that offers virtual machines known as Droplets.
+
+🔹 Steps to Set Up a VM (Droplet):
+Create an Account:
+
+Go to https://www.digitalocean.com and sign up.
+
+Create a Droplet (VM):
+
+Click Create > Droplet.
+
+Choose an Image (e.g., Ubuntu 22.04).
+
+Select a Plan (Basic/Shared CPU).
+
+Choose a Data Center Region close to your users.
+
+Add Authentication:
+
+Use SSH key (recommended).
+
+Or set a root password.
+
+Name your droplet and click Create Droplet.
+
+Access Your Droplet:
+
+Note the IP address of your droplet.
+
+Use SSH from your local machine:
+
+bash
+Copy
+Edit
+ssh root@your_droplet_ip
+🔐 What is SSH (Secure Shell)?
+🔹 Overview:
+SSH (Secure Shell) is a cryptographic network protocol for securely accessing and managing remote systems.
+
+🔹 How It Works:
+You connect to a remote machine via terminal using:
+
+bash
+Copy
+Edit
+ssh username@ip_address
+SSH uses key-based or password-based authentication.
+
+🔹 SSH Key Concepts:
+Public Key (id_rsa.pub): Stored on the remote server (e.g., DigitalOcean).
+
+Private Key (id_rsa): Stored securely on your local machine (~/.ssh/).
+
+🔹 Generate SSH Key:
+bash
+Copy
+Edit
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+Then, copy the public key to the server:
+
+bash
+Copy
+Edit
+ssh-copy-id root@your_droplet_ip
+🔹 Common SSH Commands:
+Connect:
+
+bash
+Copy
+Edit
+ssh root@your_droplet_ip
+Copy files:
+
+bash
+Copy
+Edit
+scp file.txt root@your_droplet_ip:/path/to/dir
+Use with custom port:
+
+bash
+Copy
+Edit
+ssh -p 2222 root@your_droplet_ip
