@@ -1,0 +1,116 @@
+🌐 What is AWS?
+Amazon Web Services (AWS) is the world’s most comprehensive and widely adopted cloud computing platform, offering over 200 fully featured services from data centers globally.
+
+🔑 Key Concepts of AWS:
+1. Cloud Computing Models
+IaaS (Infrastructure as a Service): e.g., EC2 (virtual servers)
+
+PaaS (Platform as a Service): e.g., Elastic Beanstalk
+
+SaaS (Software as a Service): e.g., Amazon WorkMail
+
+🔷 What is Amazon EC2?
+Amazon EC2 (Elastic Compute Cloud) is a web service that provides resizable compute capacity in the cloud. It lets you run virtual servers (called instances) for applications.
+
+🔧 Step-by-Step: Creating a New EC2 Server
+1. Log in to AWS Console
+Go to https://aws.amazon.com/console
+
+Sign in using your AWS credentials.
+
+2. Open EC2 Dashboard
+From the Services menu, choose EC2 under the Compute category.
+
+3. Launch a New Instance
+Click "Launch Instance" to begin configuration.
+
+4. Name and Tags
+Instance Name: Give your server a name (e.g., MyWebServer)
+
+You can add tags (key-value pairs) for identification and cost management.
+
+5. Choose AMI (Amazon Machine Image)
+This is the OS template for your instance.
+
+Common options:
+
+Amazon Linux
+
+Ubuntu
+
+Red Hat
+
+Windows Server
+
+📝 Ubuntu (e.g., Ubuntu 22.04) is recommended for beginners or developers.
+
+6. Choose Instance Type
+Defines CPU, memory, and networking.
+
+Common type: t2.micro or t3.micro (eligible for Free Tier)
+
+7. Configure Key Pair (SSH Access)
+Create or select an existing Key Pair (for SSH login).
+
+If creating new:
+
+Name it (e.g., ec2-keypair)
+
+Download the .pem file and store it securely
+
+Required to SSH into your instance.
+
+8. Network Settings
+Select a VPC and Subnet (default is okay for basic setup).
+
+Enable Auto-assign public IP.
+
+Create or select a Security Group:
+
+Add rules like:
+
+SSH (port 22) – Your IP only
+
+HTTP (port 80) – Anywhere
+
+HTTPS (port 443) – Anywhere
+
+9. Configure Storage
+Default: 8 GB (gp3 SSD) is sufficient for most uses.
+
+You can increase this for larger apps or databases.
+
+10. Launch Instance
+Review all settings and click Launch Instance.
+
+Wait for instance status to become "Running".
+
+🖥️ Connect to EC2 Server via SSH
+Open terminal (Linux/Mac) or Git Bash (Windows)
+
+Run:
+
+bash
+Copy
+Edit
+chmod 400 your-key.pem
+ssh -i "your-key.pem" ubuntu@<your-ec2-public-ip>
+Replace your-key.pem with your actual key file.
+
+Replace <your-ec2-public-ip> with your instance’s Public IPv4.
+
+📝 If using Amazon Linux, user is ec2-user; for Ubuntu, user is ubuntu.
+
+📁 Example Use Cases
+Deploy web servers (e.g., Nginx, Apache)
+
+Host applications (Node.js, Python, etc.)
+
+Set up databases (MySQL, PostgreSQL)
+
+🔐 Security Tips
+Never expose SSH to the world; restrict IP access.
+
+Disable root login if not required.
+
+Regularly patch OS for updates.
