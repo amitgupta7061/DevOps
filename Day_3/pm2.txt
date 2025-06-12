@@ -1,0 +1,78 @@
+🔧 Process Management in DevOps
+What is Process Management?
+In DevOps, process management refers to controlling the lifecycle of applications—starting, stopping, restarting, and ensuring they recover from failures. This is crucial for running applications reliably in production environments like AWS EC2.
+
+⚙️ PM2 - Production Process Manager for Node.js
+📌 What is the Need for PM2?
+Running a Node.js or script-based app using node app.js directly has several limitations:
+
+❌ App stops if the terminal/SSH session closes
+
+❌ No built-in auto-restart on crash
+
+❌ No logging or monitoring
+
+❌ No process scaling (cluster mode)
+
+❌ Manual restart after server reboot
+
+✅ PM2 Solves These by:
+Keeping the app alive forever
+
+Auto-restarting apps on crash or failure
+
+Managing logs (stdout & stderr)
+
+Enabling monitoring (CPU, memory)
+
+Supporting cluster mode for performance
+
+Enabling auto-start on boot
+
+🔌 Installation on AWS EC2 (Ubuntu)
+bash
+Copy
+Edit
+sudo apt update
+sudo apt install nodejs npm -y  # Install Node.js if needed
+sudo npm install -g pm2         # Install PM2 globally
+💻 PM2 Common Commands
+📦 Running an App
+bash
+Copy
+Edit
+pm2 start app.js                # Start app
+pm2 start app.js --name myapp   # Start with a custom name
+🔁 Restarting & Stopping
+bash
+Copy
+Edit
+pm2 restart myapp              # Restart the app
+pm2 stop myapp                 # Stop the app
+pm2 delete myapp               # Delete process from PM2
+🔍 Viewing Status
+bash
+Copy
+Edit
+pm2 list                       # View all processes
+pm2 show myapp                 # Detailed process info
+pm2 monit                      # Real-time monitoring
+🪵 Logs
+bash
+Copy
+Edit
+pm2 logs                       # View all logs
+pm2 logs myapp                 # Logs of a specific app
+📂 Save & Startup on Reboot
+bash
+Copy
+Edit
+pm2 save                       # Save process list
+pm2 startup                    # Generate startup script
+sudo env PATH=$PATH:/usr/bin pm2 startup systemd -u ubuntu --hp /home/ubuntu
+🔄 Other Useful Commands
+bash
+Copy
+Edit
+pm2 reload all                 # Graceful reload
+pm2 kill                       # Stop all PM2 processes

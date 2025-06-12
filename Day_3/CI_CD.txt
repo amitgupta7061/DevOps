@@ -1,0 +1,77 @@
+🚀 What is CI/CD?
+CI - Continuous Integration
+A development practice where developers frequently merge code changes into a central repository, followed by automated builds and tests.
+
+CD - Continuous Delivery / Continuous Deployment
+Continuous Delivery: Automatically prepares and verifies code for release to production but requires manual approval to deploy.
+
+Continuous Deployment: Automatically deploys every code change to production after passing tests, no manual step needed.
+
+✅ Why CI/CD is Needed
+Problem in Traditional Workflow	Solution via CI/CD
+Manual testing is slow and error-prone	Automated testing on every commit
+Code integration leads to conflicts	Frequent small merges reduce conflicts
+Manual deployment takes time	Auto-deploy speeds up release cycle
+Bugs are caught late in production	Caught early via automated pipelines
+Inconsistent environments	CI/CD ensures uniform build/test/deploy
+
+⚙️ How CI/CD Works (Basic Pipeline Flow)
+Code Commit: Dev pushes code to version control (e.g., GitHub)
+
+CI Trigger: A CI tool (e.g., GitHub Actions, Jenkins, GitLab CI, CircleCI) detects the commit
+
+Build: Code is compiled or bundled
+
+Test: Automated unit/integration tests run
+
+Delivery Step:
+
+In CI/CD: App is packaged and staged for release
+
+In Continuous Deployment: Code is deployed to production instantly
+
+🛠️ What CI/CD Does
+Continuous Integration:
+Pulls latest code
+
+Builds app
+
+Runs tests
+
+Reports status to team
+
+Ensures no broken code enters shared branch
+
+Continuous Delivery/Deployment:
+Builds Docker images or artifacts
+
+Deploys to:
+
+Staging (in CD)
+
+Production (in Continuous Deployment)
+
+Sends alerts/logs for visibility
+
+📦 CI/CD Tools
+CI/CD Tool	Description
+GitHub Actions	CI/CD workflows built into GitHub
+Jenkins	Open-source automation server
+GitLab CI/CD	Built into GitLab
+CircleCI	Fast CI for cloud-native apps
+Travis CI	Easy CI setup for GitHub projects
+AWS CodePipeline	CI/CD service in AWS ecosystem
+
+📈 Benefits of CI/CD
+Faster and safer code releases
+
+Early bug detection
+
+Improves team collaboration
+
+Reduces manual errors
+
+Encourages smaller, frequent updates
+
+Easier rollbacks and traceability
+
