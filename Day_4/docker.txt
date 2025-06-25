@@ -1,0 +1,110 @@
+1. Why Docker?
+    Simplifies deployment.
+
+    Solves “it works on my machine” issue.
+
+    Provides lightweight containers vs heavy VMs.
+
+2. Containerization
+    Packaging app + dependencies into isolated units (containers).
+
+    Ensures consistency across environments.
+
+3. History of Docker
+    Released in 2013 by DotCloud.
+
+    Built on LXC (Linux Containers).
+
+    Became widely adopted due to simplicity and power.
+
+4. Installing Docker
+    Install Docker Engine for your OS (Windows, macOS, Linux).
+
+    Use Docker Desktop or CLI.
+
+    Verify with: docker --version.
+
+5. Inside Docker
+    Uses namespaces and cgroups (Linux features).
+
+    Manages isolated processes in containers.
+
+6. Images vs Containers
+    Image: Read-only template (blueprint).
+
+    Container: Running instance of an image.
+
+7. Port Mapping
+    Maps container ports to host ports.
+
+    docker run -p 8080:80 maps port 80 in container to 8080 on host.
+    docker run -p 27017:27017 mongo -> my port:docker port
+
+8. Common Docker Commands
+    docker ps, docker run, docker stop, docker rm, docker images, docker rmi, docker exec.
+
+9. Dockerfile
+    Script to create Docker images.
+
+    Contains instructions like FROM, COPY, RUN, CMD.
+
+10. Building Images
+    Use: docker build -t myimage .
+
+    Runs Dockerfile to produce an image.
+
+11. Running Images
+    docker run myimage
+
+    Can attach ports, volumes, env vars.
+
+12. Passing in env variables
+    docker run -e KEY=value myimage
+
+    Can use .env files too.
+
+13. More Commands
+    docker logs, docker inspect, docker stats, docker network.
+
+14. Pushing to DockerHub
+    Login: docker login
+
+    Tag: docker tag myimage username/myimage
+
+    Push: docker push username/myimage
+
+15. Layers in Docker
+    Each Dockerfile instruction creates a new layer.
+
+    Layers are cached, reusable.
+
+16. Layers Practically
+    Use layer caching to speed up builds.
+
+    Put frequently-changing steps at the end of Dockerfile.
+
+17. Why Layers?
+    Increases efficiency.
+
+    Enables reusability and faster builds.
+
+18. Optimising Dockerfile
+    Minimize number of layers.
+
+    Use .dockerignore.
+
+    Combine commands (RUN apt update && apt install -y ...).
+
+    Use smaller base images (e.g., alpine).
+
+19. Networks and Volumes
+    Networks: Enable container-to-container communication.
+
+    Volumes: Persist data outside container lifecycle.
+
+20. Volumes
+    Mounts persistent storage.
+
+    -v host_path:container_path
+
+    Used for DBs, logs, configs.
