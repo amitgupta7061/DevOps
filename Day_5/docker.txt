@@ -1,0 +1,138 @@
+14. Pushing to DockerHub
+    What is DockerHub?
+    Cloud storage for Docker images (like GitHub for code)
+
+    Allows sharing images publicly/privately
+
+    Steps to Push:
+    Login (link your CLI to DockerHub):
+
+    bash
+    docker login
+    (Enter username + password/personal access token)
+
+    Tag Image (format: username/repo:tag):
+
+    bash
+    docker tag local-image yourusername/repo-name:version
+    (Example: docker tag myapp alice/webapp:v1)
+
+    Push:
+
+    bash
+    docker push yourusername/repo-name:version
+    Verify:
+
+    Visit hub.docker.com → Your repository
+
+15. Layers in Docker
+    What are Layers?
+    Docker images are built as a stack of read-only layers
+
+    Each Dockerfile instruction creates a new layer
+
+    Key Properties:
+    ✔ Immutable (can't change after creation)
+    ✔ Cached (reused if unchanged → faster builds)
+    ✔ Order matters (Docker rebuilds from first changed layer)
+
+    Example (Dockerfile):
+    dockerfile
+    FROM ubuntu         # Layer 1: Base OS
+    RUN apt update      # Layer 2: Updates
+    COPY . /app         # Layer 3: Adds files
+    CMD ["./app/run"]   # Layer 4: Runtime command
+16. Layers Practically
+    View Layer Details:
+    bash
+    docker image history IMAGE_NAME
+    Output Shows:
+
+    Layer creation order
+
+    Command used
+
+    Layer size
+
+    Pro Tip:
+    Smaller layers = faster builds & smaller images
+
+    Combine related commands (e.g., RUN apt update && apt install -y python)
+
+17. Why Layers?
+    Benefits:
+    Build Speed: Reuses cached layers (no rebuild if unchanged)
+
+    Storage Efficiency: Shared layers across images save space
+
+    Security: Immutable layers prevent tampering
+
+    Debugging: Inspect layers to find issues
+
+    Trade-off:
+    Too many layers → bloated images
+
+18. Optimising Dockerfile
+    Best Practices:
+    Minimize Layers: Chain commands with &&
+
+    dockerfile
+    RUN apt update && apt install -y python3
+    Use .dockerignore: Exclude unnecessary files (like node_modules)
+
+    Multi-stage Builds: Reduce final image size
+
+    dockerfile
+    FROM node AS builder
+    COPY . .
+    RUN npm build
+
+    FROM nginx
+    COPY --from=builder /dist /usr/share/nginx/html
+    Order Matters: Place frequently changing layers (e.g., COPY) last
+
+19. Networks in Docker
+    Default Networks:
+    bridge: Default network for containers
+
+    host: Shares host’s network directly
+
+    none: No networking
+
+    Create a Custom Network:
+    bash
+    docker network create my-network
+    Connect Containers:
+    bash
+    docker run --network=my-network --name container1 my-image
+    docker run --network=my-network --name container2 my-image
+    (Containers can communicate using names as DNS!)
+
+20. Volumes
+    What are Volumes?
+    Persistent storage for containers (data survives container deletion)
+
+    Types:
+    Named Volumes (Managed by Docker):
+
+    bash
+    docker volume create my-vol
+    docker run -p 27017:27017 -v my-vol:/data/db my-image
+    Bind Mounts (Link to host folder):
+
+    bash
+    docker run -v /host/path:/container/path my-image
+    Key Uses:
+    Databases (e.g., MySQL data)
+
+    Config files
+
+    Shared data between containers
+
+Summary Cheat Sheet
+    Concept	Key Takeaway
+    DockerHub	Tag images as user/repo:tag before docker push
+    Layers	Immutable, cached, order-sensitive
+    Optimization	Fewer layers + multi-stage builds = smaller images
+    Networks	Use custom networks for secure container communication
+    Volumes	Persistent storage (named volumes > bind mounts for production)
